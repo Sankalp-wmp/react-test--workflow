@@ -44,7 +44,8 @@
 name: Daily-trigger
 on:
   schedule:
-    - cron: '0 */12 * * *'
+    - cron: '50  17 * * *'
+    - timezone: 'IST'
   workflow_dispatch:
 
 jobs:
