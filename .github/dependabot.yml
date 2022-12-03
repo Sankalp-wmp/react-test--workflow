@@ -19,8 +19,8 @@ name: Automation Tests
 on:
 workflow_dispatch:
 schedule:
-  - cron: '55 15 * * *'
-  - cron: '55 15 * * *'
+  - cron: '50 15 * * *'
+  - cron: '50 15 * * *'
 
 jobs:
   ui-chrome-smoke-tests:
@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Smoke Test
         uses: actions/checkout@v2
-        if: github.event.schedule == '55 15 * * *'
+        if: github.event.schedule == '50 15 * * *'
         with:
           # Run regression test suite
           command: npm run smoke-test
@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Sanity Test
         uses: actions/checkout@v2
-        if: github.event.schedule != '55 15 * * *'
+        if: github.event.schedule != '50 15 * * *'
         with:
           # Run sanity test suite
           command: npm run sanity-test
