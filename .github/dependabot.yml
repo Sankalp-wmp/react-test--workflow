@@ -1,7 +1,43 @@
-version: 2
-updates:
-    package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      time: "18:12"
+# version: 2
+# updates:
+#   - package-ecosystem: "github-actions"
+#     directory: "/"
+#     schedule:
+#       interval: "daily"
+#       time: "15:"
+#     versioning-strategy: widen
+
+#   -   package-ecosystem: "composer"
+#     # Files stored in repository root
+#     directory: "/"
+#     schedule:
+#       interval: "daily"
+#       time: "15:20"
+#     versioning-strategy: widen
+
+name: Automation Tests
+on:
+workflow_dispatch:
+schedule:
+  - cron: '55 15 * * *'
+  - cron: '55 15 * * *'
+
+jobs:
+  ui-chrome-smoke-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Smoke Test
+        uses: actions/checkout@v2
+        if: github.event.schedule == '55 15 * * *'
+        with:
+          # Run regression test suite
+          command: npm run smoke-test
+  ui-chrome-sanity-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sanity Test
+        uses: actions/checkout@v2
+        if: github.event.schedule != '55 15 * * *'
+        with:
+          # Run sanity test suite
+          command: npm run sanity-test
