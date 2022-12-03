@@ -44,7 +44,7 @@
 name: Daily-trigger
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 */12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Not on Monday or Wednesday
-        if: github.event.schedule == '*/5 * * * *'
+        if: github.event.schedule == '0 */12 * * *'
         run: echo "This step will be skipped on Monday and Wednesday"
       - name: Every time
         run: echo "This step will always run"
