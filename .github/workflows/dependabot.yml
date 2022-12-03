@@ -41,10 +41,11 @@
 #         with:
 #           # Run sanity test suite
 #           command: npm run sanity-test
+name: Daily-trigger
 on:
   schedule:
     - cron: '5 * * * *'
-    - cron: '5 * * * *'
+  workflow_dispatch:
 
 jobs:
   test_schedule:
