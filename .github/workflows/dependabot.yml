@@ -28,7 +28,7 @@
 #     steps:
 #       - name: Smoke Test
 #         uses: actions/checkout@v2
-#         if: github.event.schedule == '55 15 * * *'
+#         if: github.event.schedule == '50 15 * * *'
 #         with:
 #           # Run regression test suite
 #           command: npm run smoke-test
@@ -37,14 +37,14 @@
 #     steps:
 #       - name: Sanity Test
 #         uses: actions/checkout@v2
-#         if: github.event.schedule != '55 15 * * *'
+#         if: github.event.schedule != '50 15 * * *'
 #         with:
 #           # Run sanity test suite
 #           command: npm run sanity-test
 name: Daily-trigger
 on:
   schedule:
-    - cron: '50 9 * * *'
+    - cron: '45 9 * * *'
   pull_request:
     branches:
       - master
@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Not on Monday or Wednesday
-        if: (github.event.schedule == '50 9 * * *')||(github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
+        if: (github.event.schedule == '45 9 * * *')||(github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
         run: echo "This step will be skipped on Monday and Wednesday"
       - name: Every time
         run: echo "This step will always run"
