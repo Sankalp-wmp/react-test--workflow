@@ -44,7 +44,7 @@
 name: Daily-trigger
 on:
   schedule:
-    - cron: '50 9 * * *'
+    - cron: '50 6 * * ?*'
   pull_request:
     branches:
       - master
